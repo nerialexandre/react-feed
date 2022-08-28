@@ -34,8 +34,15 @@ export function Post({ author, content, publishedAt })
 
   const deleteComment = (comment) =>
   {
-    console.log(`Delete '${comment}'`)
+    const commentIndex = comments.findIndex((element) =>
+    {
+      return comment === element
+    })
+
+    setComments(comments.splice(commentIndex, 1))
   }
+
+  const newCommentIsEmpty = commentText.length === 0
 
   return (
     <article className={styles.post}>
@@ -74,8 +81,11 @@ export function Post({ author, content, publishedAt })
           onChange={handleCommentText}
           value={commentText}
           placeholder='Deixe seu comentário'
+          required
         />
-        <button type='submit'>Publicar</button>
+        <button type='submit' disabled={newCommentIsEmpty}>
+          Publicar
+        </button>
       </form>
 
       <div className={styles.commentList}>

@@ -97,6 +97,13 @@
   line-height: 1.6;
 }
 
+.commentForm button[type=submit]:disabled {
+  /* background: var(--green-500); */
+  opacity: 0.7;
+  transition: 100ms;
+  cursor: not-allowed;
+
+}
 .commentList {
   margin-top: 2rem;
 }
