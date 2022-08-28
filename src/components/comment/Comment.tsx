@@ -3,34 +3,41 @@ import { useState } from 'react'
 import { Avatar } from '../avatar/Avatar'
 import styles from './Comment.module.css'
 
-export function Comment({ content, onDeleteComment })
-{
+interface CommentProps {
+  content: string
+  onDeleteComment: (comment: string) => void;
+}
+
+export function Comment({ content, onDeleteComment }: CommentProps) {
   const [likeCount, setLikeCount] = useState(0)
 
-  const handleDeleteComment = () =>
-  {
+  const handleDeleteComment = () => {
     onDeleteComment(content)
   }
 
-  const handleLikeComment = () =>
-  {
-    setLikeCount(state =>
-    {
+  const handleLikeComment = () => {
+    setLikeCount(state => {
       return state + 1
     })
   }
 
   return (
     <div className={styles.comment}>
-      <Avatar hasBorder={false} className={styles.avatar} src="https://github.com/nerialexandre.png" />
+      <Avatar hasBorder={false} src="https://github.com/nerialexandre.png" />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authotAndTime}>
-              <span><strong>Alexandre Neri </strong>(Você)</span>
-              <time title="11 de maio às 08:13" dateTime="2022-05-11 08:13:30">Publicado há 1h</time>
+              <span>
+                <strong>Alexandre Neri </strong>(Você)
+              </span>
+              <time title="11 de maio às 08:13" dateTime="2022-05-11 08:13:30">
+                Publicado há 1h
+              </time>
             </div>
-            <button onClick={handleDeleteComment}><Trash size={24} /></button>
+            <button onClick={handleDeleteComment}>
+              <Trash size={24} />
+            </button>
           </header>
           <p>{content}</p>
         </div>
@@ -41,7 +48,6 @@ export function Comment({ content, onDeleteComment })
             <span>{likeCount}</span>
           </button>
         </footer>
-
       </div>
     </div>
   )
