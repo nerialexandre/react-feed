@@ -5,32 +5,18 @@ import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
-// interface Author {
-//   name: string
-//   role: string
-//   avatarUrl: string
-// }
-
-// interface Content {
-//   type: string
-//   content: string
-// }
-
 export interface PostProps {
   author: {
-    avatarUrl: string;
-    name: string;
+    avatarUrl: string
+    name: string
     role: string
-  },
+  }
   content: {
-    type: 'paragraph' | 'link';
+    type: 'paragraph' | 'link'
     content: string
-  }[],
+  }[]
   publishedAt: string
 }
-
-
-
 
 export function Post({ author, content, publishedAt }: PostProps) {
   const [comments, setComments] = useState(['Muito Legal'])
